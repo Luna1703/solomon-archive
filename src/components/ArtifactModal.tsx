@@ -43,19 +43,37 @@ export const ArtifactModal: React.FC<ArtifactModalProps> = ({
   const relicNumStr = String(indexNumber).padStart(3, '0');
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-amber-900/40 rounded-3xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 backdrop-blur-md animate-in fade-in duration-200"
+      style={{ background: 'rgba(15, 13, 14, 0.88)' }}
+    >
+      <div
+        className="relative w-full max-w-2xl border rounded-3xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden"
+        style={{
+          background: 'var(--bg-card)',
+          borderColor: 'var(--border)',
+        }}
+      >
         {/* Top bar */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 bg-slate-950/40">
+        <div
+          className="flex items-center justify-between px-5 py-3.5 border-b"
+          style={{
+            background: 'var(--bg-primary)',
+            borderColor: 'var(--border)',
+          }}
+        >
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-amber-400" />
-            <span className="font-mono text-xs sm:text-sm font-bold text-amber-400 tracking-wider">
+            <Sparkles className="w-4 h-4" style={{ color: 'var(--accent)' }} />
+            <span
+              className="font-mono text-xs sm:text-sm font-bold tracking-wider"
+              style={{ color: 'var(--accent)' }}
+            >
               {t.relicNumber.replace('{num}', relicNumStr)}
             </span>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-white/50 hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -64,7 +82,13 @@ export const ArtifactModal: React.FC<ArtifactModalProps> = ({
         {/* Scrollable content */}
         <div className="overflow-y-auto p-4 sm:p-6 space-y-5">
           {/* Main Photo Frame */}
-          <div className="relative rounded-2xl overflow-hidden border border-amber-900/40 bg-slate-950 flex items-center justify-center max-h-[50vh]">
+          <div
+            className="relative rounded-2xl overflow-hidden border flex items-center justify-center max-h-[50vh]"
+            style={{
+              background: 'var(--bg-primary)',
+              borderColor: 'var(--border)',
+            }}
+          >
             <img
               src={artifact.imageUrl}
               alt={artifact.taskTitle[lang]}
@@ -75,28 +99,47 @@ export const ArtifactModal: React.FC<ArtifactModalProps> = ({
           {/* Details header */}
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 font-medium">
+              <span
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border font-semibold"
+                style={{
+                  background: 'var(--accent-subtle)',
+                  borderColor: 'var(--border-accent)',
+                  color: 'var(--accent)',
+                }}
+              >
                 <Tag className="w-3 h-3" />
                 {t.categories[artifact.taskCategory] || artifact.taskCategory}
               </span>
-              <span className="inline-flex items-center gap-1 text-slate-400">
+              <span className="inline-flex items-center gap-1 text-white/50">
                 <Calendar className="w-3.5 h-3.5" />
                 {formattedDate}
               </span>
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-slate-100">
+            <h3
+              className="text-lg sm:text-xl font-bold text-white"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               {artifact.taskTitle[lang]}
             </h3>
           </div>
 
           {/* User note if present */}
           {artifact.note && (
-            <div className="rounded-2xl bg-slate-950/70 border border-slate-800 p-4 relative">
-              <Quote className="w-5 h-5 text-amber-500/20 absolute top-2 right-2" />
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1">
+            <div
+              className="rounded-2xl border p-4 relative"
+              style={{
+                background: 'var(--bg-primary)',
+                borderColor: 'var(--border)',
+              }}
+            >
+              <Quote
+                className="w-5 h-5 absolute top-2 right-2 pointer-events-none"
+                style={{ color: 'var(--accent)', opacity: 0.15 }}
+              />
+              <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest block mb-1">
                 {t.captureNoteLabel}
               </span>
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">
+              <p className="text-xs sm:text-sm text-white/80 leading-relaxed whitespace-pre-wrap">
                 {artifact.note}
               </p>
             </div>
@@ -104,7 +147,13 @@ export const ArtifactModal: React.FC<ArtifactModalProps> = ({
         </div>
 
         {/* Footer actions */}
-        <div className="px-5 py-3 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between">
+        <div
+          className="px-5 py-3 border-t flex items-center justify-between"
+          style={{
+            background: 'var(--bg-primary)',
+            borderColor: 'var(--border)',
+          }}
+        >
           <button
             type="button"
             onClick={handleDelete}
@@ -117,7 +166,11 @@ export const ArtifactModal: React.FC<ArtifactModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors"
+            className="px-5 py-2 rounded-xl text-white text-xs font-bold transition-all"
+            style={{
+              background: 'var(--accent)',
+              boxShadow: '0 2px 8px var(--accent-glow)',
+            }}
           >
             {t.closeModal}
           </button>

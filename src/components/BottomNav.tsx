@@ -43,7 +43,13 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-20 bg-slate-950/90 backdrop-blur-lg border-t border-slate-800/80 px-2 py-1.5 sm:py-2">
+    <nav
+      className="fixed bottom-0 left-0 right-0 z-20 backdrop-blur-lg border-t px-2 py-1.5 sm:py-2"
+      style={{
+        backgroundColor: 'rgba(15, 13, 14, 0.92)',
+        borderColor: 'var(--border)',
+      }}
+    >
       <div className="max-w-md mx-auto grid grid-cols-3 gap-2">
         {items.map((item) => {
           const isActive = activeTab === item.id;
@@ -51,16 +57,29 @@ export const BottomNav: React.FC<BottomNavProps> = ({
             <button
               key={item.id}
               onClick={() => onTabChange(item.id)}
-              className={`relative flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all duration-200 ${
+              className="relative flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all duration-200"
+              style={
                 isActive
-                  ? 'text-amber-400 bg-amber-500/10 font-medium'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
-              }`}
+                  ? {
+                      color: 'var(--accent)',
+                      background: 'var(--accent-subtle)',
+                      fontWeight: 600,
+                    }
+                  : {
+                      color: 'var(--text-secondary)',
+                    }
+              }
             >
               <div className="relative">
                 {item.icon}
                 {item.badge !== undefined && (
-                  <span className="absolute -top-1.5 -right-3 px-1.5 py-0.2 min-w-4 text-[10px] font-bold rounded-full bg-amber-500 text-slate-950 flex items-center justify-center shadow-xs">
+                  <span
+                    className="absolute -top-1.5 -right-3 px-1.5 py-0.2 min-w-4 text-[10px] font-bold rounded-full flex items-center justify-center text-white"
+                    style={{
+                      background: 'var(--accent)',
+                      boxShadow: '0 2px 6px var(--accent-glow)',
+                    }}
+                  >
                     {item.badge}
                   </span>
                 )}

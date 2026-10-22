@@ -106,16 +106,31 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg bg-slate-900 border border-amber-900/40 rounded-3xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 backdrop-blur-md animate-in fade-in duration-200"
+      style={{ background: 'rgba(15, 13, 14, 0.88)' }}
+    >
+      <div
+        className="relative w-full max-w-lg border rounded-3xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden"
+        style={{
+          background: 'var(--bg-card)',
+          borderColor: 'var(--border)',
+        }}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-950/40">
-          <h3 className="text-base font-bold text-slate-100">
+        <div
+          className="flex items-center justify-between px-5 py-4 border-b"
+          style={{
+            background: 'var(--bg-primary)',
+            borderColor: 'var(--border)',
+          }}
+        >
+          <h3 className="text-base font-bold text-white">
             {t.settingsTitle}
           </h3>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-white/50 hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -125,7 +140,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         <div className="overflow-y-auto p-5 space-y-6">
           {/* Language Selector */}
           <div className="space-y-2.5">
-            <label className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider">
+            <label className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
               <Globe className="w-4 h-4" />
               <span>{t.languageLabel}</span>
             </label>
@@ -139,11 +154,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   key={langItem.code}
                   type="button"
                   onClick={() => onLanguageChange(langItem.code as Language)}
-                  className={`p-3 rounded-2xl border text-center transition-all ${
+                  className="p-3 rounded-2xl border text-center transition-all"
+                  style={
                     currentLang === langItem.code
-                      ? 'bg-amber-500/15 border-amber-500 text-amber-300 font-bold shadow-md shadow-amber-500/10 ring-1 ring-amber-500/40'
-                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-                  }`}
+                      ? {
+                          background: 'var(--accent)',
+                          borderColor: 'var(--border-accent)',
+                          color: '#ffffff',
+                          boxShadow: '0 2px 10px var(--accent-glow)',
+                        }
+                      : {
+                          background: 'var(--bg-primary)',
+                          borderColor: 'var(--border)',
+                          color: 'var(--text-secondary)',
+                        }
+                  }
                 >
                   <div className="text-sm font-bold">{langItem.label}</div>
                   <div className="text-[11px] opacity-80 mt-0.5">{langItem.name}</div>
@@ -152,48 +177,43 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          {/* Detective Dossier Section */}
-          <div className="rounded-2xl bg-gradient-to-br from-[#B8252A]/15 to-slate-950/80 border border-[#B8252A]/40 p-4 space-y-2">
+          {/* Tester Simulation Sanctum */}
+          <div
+            className="rounded-2xl border p-4 space-y-3"
+            style={{
+              background: 'var(--bg-primary)',
+              borderColor: 'var(--border)',
+            }}
+          >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#B8252A] uppercase tracking-wider flex items-center gap-1.5">
-                <span>🕵️</span>
-                <span>Detective Dossier / Mystery Collage</span>
-              </span>
-            </div>
-            <p className="text-xs text-slate-300">
-              Визуальный концепт расследования с наложенными уликами, записками и картами.
-            </p>
-            <div className="pt-1">
-              <a
-                href="preview-detective-dossier.html"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#B8252A] hover:bg-[#981b20] text-white text-xs font-bold uppercase tracking-wider transition-colors"
-              >
-                <span>Открыть Dossier Preview (HTML) &rarr;</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Tester Simulation Sanctum (Allows testing multi-day streaks) */}
-          <div className="rounded-2xl bg-gradient-to-br from-amber-950/20 to-slate-950/80 border border-amber-500/30 p-4 space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
                 <FlaskConical className="w-4 h-4" />
                 <span>{t.testToolsTitle}</span>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30">
+              <span
+                className="text-[10px] font-mono px-2 py-0.5 rounded border"
+                style={{
+                  background: 'var(--accent-subtle)',
+                  borderColor: 'var(--border-accent)',
+                  color: 'var(--accent)',
+                }}
+              >
                 {effectiveDateKey} {simulatedOffset !== 0 ? `(+${simulatedOffset}d)` : ''}
               </span>
             </div>
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-white/60">
               {t.testToolsDesc}
             </p>
             <div className="flex flex-wrap gap-2 pt-1">
               <button
                 type="button"
                 onClick={handleAdvanceDay}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-xs font-semibold transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-colors border"
+                style={{
+                  background: 'var(--accent-subtle)',
+                  borderColor: 'var(--border-accent)',
+                  color: 'var(--accent)',
+                }}
               >
                 <FastForward className="w-3.5 h-3.5" />
                 <span>{t.simulateTomorrow}</span>
@@ -202,7 +222,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 <button
                   type="button"
                   onClick={handleResetSimulatedDate}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-semibold transition-colors"
+                  style={{
+                    background: 'var(--bg-secondary)',
+                    borderColor: 'var(--border)',
+                    color: 'var(--text-secondary)',
+                  }}
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>{t.simulateResetDate}</span>
@@ -213,15 +238,24 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
           {/* Local Storage & Backup */}
           <div className="space-y-3">
-            <label className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-              <Database className="w-4 h-4 text-amber-400" />
+            <label className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/50">
+              <Database className="w-4 h-4" style={{ color: 'var(--accent)' }} />
               <span>{t.storageInfoTitle}</span>
             </label>
-            <div className="rounded-2xl bg-slate-950/60 border border-slate-800 p-3.5 text-xs text-slate-300 space-y-2">
+            <div
+              className="rounded-2xl border p-3.5 text-xs space-y-2 text-white/70"
+              style={{
+                background: 'var(--bg-primary)',
+                borderColor: 'var(--border)',
+              }}
+            >
               <p>{t.storageInfoDesc}</p>
-              <div className="flex items-center justify-between pt-1 border-t border-slate-800/80 font-mono text-[11px] text-amber-400">
+              <div
+                className="flex items-center justify-between pt-1 border-t font-mono text-[11px]"
+                style={{ borderColor: 'var(--border)' }}
+              >
                 <span>{t.totalCollected}:</span>
-                <span className="font-bold">{artifactCount}</span>
+                <span className="font-bold" style={{ color: 'var(--accent)' }}>{artifactCount}</span>
               </div>
             </div>
 
@@ -230,7 +264,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <button
                 type="button"
                 onClick={handleExportBackup}
-                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-medium transition-colors"
+                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-medium transition-colors hover:text-white"
+                style={{
+                  background: 'var(--bg-secondary)',
+                  borderColor: 'var(--border)',
+                  color: 'var(--text-secondary)',
+                }}
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{t.exportBackup}</span>
@@ -238,7 +277,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-medium transition-colors"
+                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-medium transition-colors hover:text-white"
+                style={{
+                  background: 'var(--bg-secondary)',
+                  borderColor: 'var(--border)',
+                  color: 'var(--text-secondary)',
+                }}
               >
                 <Upload className="w-3.5 h-3.5" />
                 <span>{t.importBackup}</span>
@@ -260,32 +304,42 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
 
           {/* About & Version */}
-          <div className="rounded-2xl bg-slate-950/40 border border-slate-800/60 p-4 space-y-2">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-400">
-              <Info className="w-4 h-4 text-amber-400" />
+          <div
+            className="rounded-2xl border p-4 space-y-2"
+            style={{
+              background: 'var(--bg-primary)',
+              borderColor: 'var(--border)',
+            }}
+          >
+            <div className="flex items-center gap-2 text-xs font-bold text-white/50">
+              <Info className="w-4 h-4" style={{ color: 'var(--accent)' }} />
               <span>{t.aboutTitle}</span>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-white/60 leading-relaxed">
               {t.aboutText}
             </p>
-            <div className="pt-2 border-t border-slate-800/60 flex items-center justify-between text-xs">
-              <span className="text-slate-400">Creator / Instagram:</span>
+            <div
+              className="pt-2 border-t flex items-center justify-between text-xs"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <span className="text-white/40">Creator / Instagram:</span>
               <a
                 href="https://www.instagram.com/tkhanoyan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold text-amber-400 hover:text-amber-300 hover:underline"
+                className="font-bold hover:underline"
+                style={{ color: 'var(--accent)' }}
               >
                 @tkhanoyan
               </a>
             </div>
-            <div className="text-[10px] text-slate-500 font-mono pt-1">
+            <div className="text-[10px] text-white/30 font-mono pt-1">
               {t.version}
             </div>
           </div>
 
           {/* Danger zone */}
-          <div className="pt-2 border-t border-slate-800">
+          <div className="pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
             <button
               type="button"
               onClick={handleResetAll}
@@ -298,11 +352,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="px-5 py-3 border-t border-slate-800 bg-slate-950/60 flex justify-end">
+        <div
+          className="px-5 py-3 border-t flex justify-end"
+          style={{
+            background: 'var(--bg-primary)',
+            borderColor: 'var(--border)',
+          }}
+        >
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors"
+            className="px-5 py-2 rounded-xl text-white text-xs font-bold transition-all"
+            style={{
+              background: 'var(--accent)',
+              boxShadow: '0 2px 8px var(--accent-glow)',
+            }}
           >
             {t.saveClose}
           </button>

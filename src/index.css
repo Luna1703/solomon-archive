@@ -1,235 +1,215 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Permanent+Marker&family=Work+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* Detective Dossier / Mystery Collage Theme */
-  --bg-primary: linear-gradient(135deg, #F7EBE0 0%, #FDF8F2 100%);
-  --accent-red: #B8252A;
-  --accent-red-hover: #981b20;
-  --accent-red-glow: rgba(184, 37, 42, 0.28);
-  --text-main: #2C2825;
-  --text-muted: #6B635B;
-  --bg-craft: #E6D5C3;
-  --bg-craft-dark: #D4BEA7;
-  --bg-light-paper: #FFFDF9;
-  --tape-bg: rgba(255, 255, 235, 0.68);
-  --tape-border: rgba(220, 210, 180, 0.4);
+  --bg-primary: #0f0d0e;
+  --bg-secondary: #1a1718;
+  --bg-card: #1f1c1d;
+  --bg-card-hover: #262223;
 
-  --font-display: 'Anton', 'Oswald', sans-serif;
-  --font-headline: 'Oswald', sans-serif;
-  --font-body: 'Work Sans', 'Inter', system-ui, sans-serif;
-  --font-marker: 'Permanent Marker', 'Caveat', cursive;
-  --font-hand: 'Caveat', cursive;
+  --accent: #e0245b;
+  --accent-hover: #c01d4e;
+  --accent-glow: rgba(224, 36, 91, 0.25);
+  --accent-subtle: rgba(224, 36, 91, 0.12);
+
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.35);
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(224, 36, 91, 0.3);
+
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-amber-500 selection:text-slate-950;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #fff;
   }
 }
 
-/* ==========================================================================
-   DETECTIVE DOSSIER DESIGN SYSTEM CLASSES
-   ========================================================================== */
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: rgba(224, 36, 91, 0.35); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* Button Detective */
-.btn-detective {
+/* ============================================================
+   THEME UTILITY CLASSES
+   ============================================================ */
+.bg-theme-primary { background-color: var(--bg-primary); }
+.bg-theme-secondary { background-color: var(--bg-secondary); }
+.bg-theme-card { background-color: var(--bg-card); }
+.bg-theme-accent { background-color: var(--accent); }
+.bg-theme-accent-subtle { background-color: var(--accent-subtle); }
+
+.border-theme { border-color: var(--border); }
+.border-theme-accent { border-color: var(--border-accent); }
+
+.text-theme-accent { color: var(--accent); }
+.text-theme-secondary { color: var(--text-secondary); }
+.text-theme-muted { color: var(--text-muted); }
+
+/* ============================================================
+   CARDS / SURFACES
+   ============================================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 0 0 1px var(--border-accent), 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--accent-red);
-  color: #FFFFFF;
-  font-family: var(--font-headline);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  padding: 0.85rem 1.75rem;
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: none;
   cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 4px 10px var(--accent-red-glow);
-  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  box-shadow: 0 4px 14px var(--accent-glow);
 }
-
-.btn-detective:hover {
-  background-color: var(--accent-red-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(184, 37, 42, 0.38);
-  color: #FFFFFF;
+.btn-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 20px var(--accent-glow);
+  transform: translateY(-1px);
 }
-
-.btn-detective:active {
+.btn-primary:active {
   transform: translateY(0);
 }
 
-/* Tape */
-.tape {
-  position: absolute;
-  width: 75px;
-  height: 22px;
-  background: var(--tape-bg);
-  border-left: 2px dashed rgba(200, 190, 160, 0.35);
-  border-right: 2px dashed rgba(200, 190, 160, 0.35);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  z-index: 25;
-  pointer-events: none;
-  backdrop-filter: blur(1px);
-}
-
-/* Polaroid Card */
-.polaroid-card {
-  background: #FFFFFF;
-  padding: 10px 10px 30px 10px;
-  border-radius: 2px;
-  box-shadow: 0 4px 6px rgba(44, 40, 37, 0.08), 0 10px 20px rgba(44, 40, 37, 0.07);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  user-select: none;
-}
-
-.polaroid-card:hover {
-  box-shadow: 0 10px 25px rgba(44, 40, 37, 0.12), 0 20px 40px rgba(44, 40, 37, 0.08);
-}
-
-.polaroid-photo {
-  width: 100%;
-  aspect-ratio: 1 / 1.15;
-  background: var(--accent-red);
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.btn-secondary:hover {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.polaroid-caption {
-  font-family: var(--font-hand);
-  font-size: 14px;
-  font-weight: 700;
-  color: #3A3530;
-  text-align: center;
-  margin-top: 8px;
-  letter-spacing: 0.03em;
-}
-
-/* Note Card */
-.note-card {
-  background: var(--bg-light-paper);
-  padding: 36px 18px 22px 18px;
-  border-radius: 2px 2px 4px 4px;
-  box-shadow: 0 4px 6px rgba(44, 40, 37, 0.08), 0 10px 20px rgba(44, 40, 37, 0.07);
-  border: 1px solid rgba(44, 40, 37, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-
-.note-spirals {
-  position: absolute;
-  top: 8px;
-  left: 12px;
-  right: 12px;
-  display: flex;
-  justify-content: space-between;
-  pointer-events: none;
-}
-
-.spiral-ring {
-  width: 8px;
-  height: 14px;
-  background: #2C2825;
-  border-radius: 6px;
-  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.6);
-}
-
-.note-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.note-line {
-  height: 4px;
-  background: #2C2825;
-  border-radius: 2px;
-  opacity: 0.85;
-  position: relative;
-}
-
-.note-line.short { width: 65%; }
-.note-line.med { width: 85%; }
-.note-line.full { width: 100%; }
-
-.note-line.crossed::after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  width: calc(100% + 4px);
-  height: 8px;
-  background: var(--accent-red);
-  opacity: 0.9;
-  border-radius: 2px;
-}
-
-/* Newspaper Clip */
-.newspaper-clip {
-  background: #F4EFEB;
-  padding: 14px;
-  box-shadow: 0 4px 6px rgba(44, 40, 37, 0.08), 0 10px 20px rgba(44, 40, 37, 0.07);
-  border: 1px solid rgba(44, 40, 37, 0.12);
-  clip-path: polygon(
-    0% 0%, 100% 0%, 98% 88%, 95% 94%, 90% 90%, 82% 98%, 75% 92%, 65% 99%,
-    55% 91%, 45% 98%, 35% 92%, 25% 99%, 15% 93%, 8% 98%, 0% 92%
-  );
-  position: relative;
-}
-
-/* Map Card */
-.map-card {
-  background: var(--bg-craft);
-  padding: 10px;
-  box-shadow: 0 4px 6px rgba(44, 40, 37, 0.08), 0 10px 20px rgba(44, 40, 37, 0.07);
-  border: 1px solid var(--bg-craft-dark);
-  clip-path: polygon(
-    0% 3%, 8% 0%, 96% 2%, 100% 5%, 98% 95%, 92% 100%, 75% 97%, 50% 99%,
-    25% 96%, 4% 98%, 0% 94%
-  );
-  position: relative;
-}
-
-/* Marker Note */
-.marker-note {
-  background: #FFFDF8;
-  padding: 8px 14px;
-  box-shadow: 0 4px 10px rgba(44, 40, 37, 0.1);
-  clip-path: polygon(2% 0%, 98% 3%, 100% 95%, 94% 99%, 4% 97%, 0% 5%);
-  z-index: 22;
-  user-select: none;
-}
-
-.marker-text {
-  font-family: var(--font-marker);
-  color: var(--accent-red);
-  font-size: 28px;
-  line-height: 1;
-  letter-spacing: 0.05em;
-}
-
-/* Custom scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.4);
+/* ============================================================
+   BADGE / TAG
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 158, 11, 0.6);
+.badge-accent {
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
 }
+.badge-neutral {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+/* ============================================================
+   GALLERY / PHOTO CARD
+   ============================================================ */
+.photo-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.photo-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-accent);
+}
+
+/* ============================================================
+   STREAK
+   ============================================================ */
+.streak-active {
+  background: var(--accent-subtle);
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+}
+.streak-inactive {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   TASK CARD
+   ============================================================ */
+.task-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(224, 36, 91, 0.06) 100%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.4s ease forwards; }
+
+@keyframes pulse-accent {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50%       { box-shadow: 0 0 0 8px transparent; }
+}
+.animate-pulse-accent { animation: pulse-accent 2s ease-in-out infinite; }

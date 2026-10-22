@@ -10,7 +10,6 @@ import { ArtifactModal } from './components/ArtifactModal';
 import { AchievementsView } from './components/AchievementsView';
 import { SettingsModal } from './components/SettingsModal';
 import { UnlockedAchievementToast } from './components/UnlockedAchievementToast';
-import { DetectiveDossierView } from './components/DetectiveDossierView';
 
 import type { Achievement, ArtifactItem, Language, StreakState, TaskDefinition } from './types';
 import { StorageService } from './services/storage';
@@ -33,7 +32,6 @@ export function App() {
   // Modals & Popups
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [isDossierOpen, setIsDossierOpen] = useState(false);
   const [selectedArtifact, setSelectedArtifact] = useState<ArtifactItem | null>(null);
   const [selectedArtifactIndex, setSelectedArtifactIndex] = useState<number>(1);
   const [celebrationAchievement, setCelebrationAchievement] = useState<Achievement | null>(null);
@@ -148,7 +146,7 @@ export function App() {
         particleCount: 100,
         spread: 80,
         origin: { y: 0.5 },
-        colors: ['#f59e0b', '#d97706', '#fbbf24', '#fef08a', '#10b981'],
+        colors: ['#e0245b', '#c01d4e', '#ffffff', '#ff4d7d', '#ffa3be'],
       });
     }
 
@@ -186,9 +184,15 @@ export function App() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-amber-400 gap-3">
-        <div className="w-10 h-10 border-2 border-amber-500/20 border-t-amber-500 rounded-full animate-spin" />
-        <span className="text-xs font-mono tracking-widest uppercase">
+      <div
+        className="min-h-screen flex flex-col items-center justify-center gap-3"
+        style={{ background: 'var(--bg-primary)', color: 'var(--accent)' }}
+      >
+        <div
+          className="w-10 h-10 border-2 rounded-full animate-spin"
+          style={{ borderColor: 'var(--border)', borderTopColor: 'var(--accent)' }}
+        />
+        <span className="text-xs font-mono tracking-widest uppercase text-white/70">
           {translations[lang].appTitle}...
         </span>
       </div>
@@ -196,7 +200,10 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+    <div
+      className="min-h-screen flex flex-col antialiased text-white"
+      style={{ background: 'var(--bg-primary)' }}
+    >
       {/* Top Header */}
       <Header
         currentLang={lang}
@@ -204,7 +211,6 @@ export function App() {
         streak={streak}
         isTodayCompleted={isTodayCompleted}
         onOpenSettings={() => setIsSettingsOpen(true)}
-        onOpenDossier={() => setIsDossierOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -308,14 +314,6 @@ export function App() {
         lang={lang}
         onDismiss={() => setCelebrationAchievement(null)}
       />
-
-      {/* Detective Dossier Mystery Collage Preview Modal */}
-      {isDossierOpen && (
-        <DetectiveDossierView
-          isModal
-          onClose={() => setIsDossierOpen(false)}
-        />
-      )}
     </div>
   );
 }
