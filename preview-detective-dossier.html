@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detective Dossier & Mystery Collage — Design Concept</title>
+
+  <!-- Google Fonts: Anton & Oswald (Headings), Inter & Work Sans (Body), Caveat & Permanent Marker (Handwritten notes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Permanent+Marker&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. COLOR PALETTE & VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-start: #F7EBE0;
+      --bg-end: #FDF8F2;
+      --accent-red: #B8252A;
+      --accent-red-hover: #981b20;
+      --accent-red-glow: rgba(184, 37, 42, 0.28);
+      --text-main: #2C2825;
+      --text-muted: #6B635B;
+      --bg-craft: #E6D5C3;
+      --bg-craft-dark: #D4BEA7;
+      --bg-light-paper: #FFFDF9;
+      --border-subtle: rgba(44, 40, 37, 0.12);
+      --tape-bg: rgba(255, 255, 235, 0.68);
+      --tape-border: rgba(220, 210, 180, 0.4);
+
+      /* Shadows */
+      --shadow-paper: 0 4px 6px rgba(44, 40, 37, 0.08), 0 10px 20px rgba(44, 40, 37, 0.07);
+      --shadow-raised: 0 10px 25px rgba(44, 40, 37, 0.12), 0 20px 40px rgba(44, 40, 37, 0.08);
+
+      /* Typography */
+      --font-display: 'Anton', 'Oswald', sans-serif;
+      --font-headline: 'Oswald', sans-serif;
+      --font-body: 'Work Sans', 'Inter', system-ui, sans-serif;
+      --font-marker: 'Permanent Marker', 'Caveat', cursive;
+      --font-hand: 'Caveat', cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle paper noise/texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: radial-gradient(#2C2825 0.75px, transparent 0.75px);
+      background-size: 12px 12px;
+      z-index: 9999;
+    }
+
+    /* ==========================================================================
+       5. HEADER
+       ========================================================================== */
+    .dossier-header {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    .header-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .header-contacts .dept-badge {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-red);
+      margin-bottom: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-contacts .dept-badge::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-red);
+    }
+
+    .header-contacts a {
+      color: var(--text-main);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .header-contacts a:hover {
+      color: var(--accent-red);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .header-nav a {
+      font-family: var(--font-headline);
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-main);
+      text-decoration: none;
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.2s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--accent-red);
+    }
+
+    .header-nav a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent-red);
+      transition: width 0.25s ease;
+    }
+
+    .header-nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       6. BUTTONS (.btn-detective)
+       ========================================================================== */
+    .btn-detective {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--accent-red);
+      color: #FFFFFF;
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 14px 28px;
+      border-radius: 7px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px var(--accent-red-glow);
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1);
+      position: relative;
+    }
+
+    .btn-detective:hover {
+      background: var(--accent-red-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(184, 37, 42, 0.38);
+      color: #FFFFFF;
+    }
+
+    .btn-detective:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(184, 37, 42, 0.3);
+    }
+
+    .btn-detective.btn-outline {
+      background: transparent;
+      color: var(--accent-red);
+      border: 2px solid var(--accent-red);
+      box-shadow: none;
+    }
+    .btn-detective.btn-outline:hover {
+      background: var(--accent-red);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       7. HERO SECTION COMPOSITION (60% / 40%)
+       ========================================================================== */
+    .hero-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 30px 32px 70px 32px;
+      display: grid;
+      grid-template-columns: 58% 42%;
+      align-items: center;
+      gap: 40px;
+      min-height: calc(100vh - 120px);
+    }
+
+    /* Left Column (Content) */
+    .hero-content {
+      padding-right: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .case-file-tag {
+      display: inline-block;
+      font-family: var(--font-headline);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      background: rgba(184, 37, 42, 0.08);
+      padding: 6px 14px;
+      border-left: 3px solid var(--accent-red);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-title .highlight-red {
+      color: var(--accent-red);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title .highlight-red::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-red);
+      opacity: 0.85;
+      transform: skewX(-12deg);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 580px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stamp-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px dashed var(--accent-red);
+      color: var(--accent-red);
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      transform: rotate(-6deg);
+      opacity: 0.9;
+      user-select: none;
+      border-radius: 4px;
+    }
+
+    /* Right Column (Mystery Collage) */
+    .hero-collage-wrap {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .collage-board {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      height: 520px;
+    }
+
+    /* ==========================================================================
+       3. & 4. GRAPHIC EVIDENCE PROPS (.polaroid-card, .note-card, etc.)
+       ========================================================================== */
+
+    /* Tape element */
+    .tape {
+      position: absolute;
+      width: 80px;
+      height: 24px;
+      background: var(--tape-bg);
+      border-left: 2px dashed rgba(200, 190, 160, 0.35);
+      border-right: 2px dashed rgba(200, 190, 160, 0.35);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      z-index: 25;
+      pointer-events: none;
+      backdrop-filter: blur(1px);
+    }
+
+    /* Polaroid Card */
+    .polaroid-card {
+      position: absolute;
+      background: #FFFFFF;
+      padding: 10px 10px 32px 10px;
+      border-radius: 2px;
+      box-shadow: var(--shadow-paper);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .polaroid-card:hover {
+      box-shadow: var(--shadow-raised);
+      z-index: 30 !important;
+    }
+
+    .polaroid-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1.15;
+      background: var(--accent-red);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    /* Red vignette / photo shine */
+    .polaroid-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .polaroid-caption {
+      font-family: var(--font-hand);
+      font-size: 15px;
+      font-weight: 700;
+      color: #3A3530;
+      text-align: center;
+      margin-top: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    /* Note Card with spiral binding */
+    .note-card {
+      position: absolute;
+      background: var(--bg-light-paper);
+      padding: 38px 20px 24px 20px;
+      border-radius: 2px 2px 4px 4px;
+      box-shadow: var(--shadow-paper);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .note-card:hover {
+      box-shadow: var(--shadow-raised);
+      z-index: 30 !important;
+    }
+
+    /* Spiral holes header */
+    .note-spirals {
+      position: absolute;
+      top: 8px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .spiral-ring {
+      width: 8px;
+      height: 14px;
+      background: #2C2825;
+      border-radius: 6px;
+      box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+    .spiral-ring::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: 1px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: 1.5px solid #6B635B;
+    }
+
+    .note-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .note-line {
+      height: 5px;
+      background: #2C2825;
+      border-radius: 3px;
+      opacity: 0.85;
+      position: relative;
+    }
+
+    .note-line.short { width: 65%; }
+    .note-line.med { width: 85%; }
+    .note-line.full { width: 100%; }
+
+    /* Red strikethrough / annotations */
+    .note-line.crossed::after {
+      content: "";
+      position: absolute;
+      left: -2px;
+      top: -2px;
+      width: calc(100% + 4px);
+      height: 9px;
+      background: var(--accent-red);
+      opacity: 0.9;
+      border-radius: 2px;
+    }
+
+    /* Newspaper Clip */
+    .newspaper-clip {
+      position: absolute;
+      background: #F4EFEB;
+      padding: 16px;
+      box-shadow: var(--shadow-paper);
+      border: 1px solid var(--border-subtle);
+      clip-path: polygon(
+        0% 0%, 100% 0%, 98% 88%, 95% 94%, 90% 90%, 82% 98%, 75% 92%, 65% 99%,
+        55% 91%, 45% 98%, 35% 92%, 25% 99%, 15% 93%, 8% 98%, 0% 92%
+      );
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .newspaper-clip:hover {
+      box-shadow: var(--shadow-raised);
+      z-index: 30 !important;
+    }
+
+    .news-header-banner {
+      height: 18px;
+      background: #736458;
+      border-radius: 1px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .news-header-banner::after {
+      content: "THE CHRONICLE";
+      position: absolute;
+      left: 6px;
+      top: 1px;
+      font-family: var(--font-headline);
+      font-size: 11px;
+      font-weight: 700;
+      color: #F4EFEB;
+      letter-spacing: 0.1em;
+    }
+
+    .news-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      position: relative;
+    }
+
+    .news-text-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .news-line {
+      height: 3px;
+      background: #2C2825;
+      border-radius: 1px;
+      opacity: 0.8;
+    }
+    .news-line.w70 { width: 70%; }
+    .news-line.w85 { width: 85%; }
+    .news-line.w100 { width: 100%; }
+
+    /* Red circular marker overlay */
+    .red-marker-circle {
+      position: absolute;
+      border: 3.5px solid var(--accent-red);
+      border-radius: 54% 46% 50% 50% / 45% 55% 45% 55%;
+      pointer-events: none;
+      transform: rotate(-8deg);
+      filter: drop-shadow(0 1px 2px rgba(184, 37, 42, 0.4));
+    }
+
+    /* Map Card */
+    .map-card {
+      position: absolute;
+      background: var(--bg-craft);
+      padding: 12px;
+      box-shadow: var(--shadow-paper);
+      border: 1px solid var(--bg-craft-dark);
+      clip-path: polygon(
+        0% 3%, 8% 0%, 96% 2%, 100% 5%, 98% 95%, 92% 100%, 75% 97%, 50% 99%,
+        25% 96%, 4% 98%, 0% 94%
+      );
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .map-card:hover {
+      box-shadow: var(--shadow-raised);
+      z-index: 30 !important;
+    }
+
+    .map-graphics {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    /* Handwritten Marker Note ("HOW?!") */
+    .marker-note {
+      position: absolute;
+      background: #FFFDF8;
+      padding: 10px 16px;
+      box-shadow: 0 4px 10px rgba(44, 40, 37, 0.1);
+      clip-path: polygon(2% 0%, 98% 3%, 100% 95%, 94% 99%, 4% 97%, 0% 5%);
+      z-index: 22;
+      user-select: none;
+      transition: transform 0.25s ease;
+    }
+    .marker-note:hover {
+      transform: scale(1.06) rotate(3deg) !important;
+      z-index: 35 !important;
+    }
+
+    .marker-text {
+      font-family: var(--font-marker);
+      color: var(--accent-red);
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      filter: drop-shadow(0 1px 1px rgba(184, 37, 42, 0.2));
+    }
+
+    /* Detective Pen prop */
+    .detective-pen {
+      position: absolute;
+      width: 14px;
+      height: 170px;
+      background: linear-gradient(90deg, #1C1917 0%, #3F3935 50%, #1C1917 100%);
+      border-radius: 7px 7px 2px 2px;
+      box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.25);
+      z-index: 24;
+      pointer-events: none;
+    }
+    .pen-clip {
+      position: absolute;
+      top: 20px;
+      left: -4px;
+      width: 5px;
+      height: 48px;
+      background: #A8A29E;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    .pen-tip {
+      position: absolute;
+      bottom: -12px;
+      left: 3px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 12px solid #2C2825;
+    }
+
+    /* ==========================================================================
+       SPECIFIC COLLAGE POSITIONING (Matches Reference Collage Image)
+       ========================================================================== */
+
+    /* 1. Map at bottom center/left */
+    .collage-board .pos-map {
+      width: 320px;
+      height: 210px;
+      bottom: 20px;
+      left: 30px;
+      transform: rotate(2deg);
+      z-index: 2;
+    }
+
+    /* 2. Newspaper clipping on middle left */
+    .collage-board .pos-newspaper {
+      width: 200px;
+      height: 180px;
+      top: 110px;
+      left: 10px;
+      transform: rotate(-6deg);
+      z-index: 6;
+    }
+
+    /* 3. Spiral Notebook on top right */
+    .collage-board .pos-notebook {
+      width: 180px;
+      height: 250px;
+      top: 15px;
+      right: 50px;
+      transform: rotate(11deg);
+      z-index: 10;
+    }
+
+    /* 4. Top Polaroid (Man with mustache) */
+    .collage-board .pos-polaroid-man {
+      width: 145px;
+      top: 50px;
+      left: 135px;
+      transform: rotate(-8deg);
+      z-index: 8;
+    }
+
+    /* 5. Bottom Right Polaroid (Woman) */
+    .collage-board .pos-polaroid-woman {
+      width: 138px;
+      bottom: 70px;
+      right: 30px;
+      transform: rotate(5deg);
+      z-index: 16;
+    }
+
+    /* 6. Handwritten "HOW?!" note centered over map/clues */
+    .collage-board .pos-how-note {
+      top: 205px;
+      left: 175px;
+      transform: rotate(-3deg);
+    }
+
+    /* 7. Pen resting by notebook */
+    .collage-board .pos-pen {
+      top: 80px;
+      right: 22px;
+      transform: rotate(14deg);
+    }
+
+    /* 8. Tape pieces pinned to card corners */
+    .pos-tape-1 { top: 38px; left: 165px; transform: rotate(-18deg); }
+    .pos-tape-2 { bottom: 210px; right: 55px; transform: rotate(22deg); }
+    .pos-tape-3 { top: 95px; left: 65px; transform: rotate(12deg); }
+    .pos-tape-4 { bottom: 15px; left: 140px; transform: rotate(-6deg); }
+
+    /* ==========================================================================
+       UI KIT & PROPS SHOWCASE SECTION
+       ========================================================================== */
+    .showcase-section {
+      max-width: 1280px;
+      margin: 40px auto 80px auto;
+      padding: 0 32px;
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .section-divider-line {
+      flex: 1;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--accent-red), var(--accent-red) 8px, transparent 8px, transparent 16px);
+      opacity: 0.35;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-red);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .prop-demo-card {
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px dashed var(--border-subtle);
+      border-radius: 8px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 320px;
+    }
+
+    .prop-label {
+      position: absolute;
+      bottom: 10px;
+      left: 14px;
+      font-family: var(--font-headline);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    /* Standalone prop demo resets */
+    .prop-demo-card .polaroid-card,
+    .prop-demo-card .note-card,
+    .prop-demo-card .newspaper-clip,
+    .prop-demo-card .map-card,
+    .prop-demo-card .marker-note {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      bottom: auto;
+    }
+
+    /* Footer stamp */
+    .dossier-footer {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 30px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       8. RESPONSIVENESS
+       ========================================================================== */
+    @media (max-width: 980px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        min-height: auto;
+      }
+      .hero-content {
+        padding-right: 0;
+        text-align: center;
+      }
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-collage-wrap {
+        height: 520px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .dossier-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+      }
+      .header-nav {
+        width: 100%;
+        overflow-x: auto;
+        gap: 18px;
+        padding-bottom: 4px;
+      }
+      .hero-container {
+        padding: 10px 20px 40px 20px;
+      }
+      .hero-collage-wrap {
+        height: auto;
+      }
+      /* On mobile screens, collage elements adapt cleanly */
+      .collage-board {
+        height: 480px;
+        transform: scale(0.85);
+        transform-origin: center top;
+      }
+      .dossier-footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       5. HEADER
+       ========================================================================== -->
+  <header class="dossier-header">
+    <div class="header-contacts">
+      <span class="dept-badge">Confidential Investigation Div.</span>
+      <div>Instagram: <a href="https://www.instagram.com/tkhanoyan" target="_blank" rel="noopener noreferrer">@tkhanoyan</a></div>
+      <div>Dispatch: <a href="mailto:archive@solomon-dossier.org">archive@solomon-dossier.org</a></div>
+    </div>
+
+    <nav>
+      <ul class="header-nav">
+        <li><a href="#hero">Case File</a></li>
+        <li><a href="#props">Evidence Board</a></li>
+        <li><a href="#suspects">Suspects</a></li>
+        <li><a href="#archive">Archive</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ==========================================================================
+       7. HERO SECTION (60% Content / 40% Mystery Collage)
+       ========================================================================== -->
+  <main>
+    <section class="hero-container" id="hero">
+      <!-- Left 60%: Newspaper Headline & Call to Action -->
+      <div class="hero-content">
+        <span class="case-file-tag">Docket #1926-SOLOMON &bull; Classification: Top Secret</span>
+
+        <h1 class="hero-title">
+          THE SHADOW<br>
+          OF THE <span class="highlight-red">ARCHIVE.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Pieces of evidence scattered across the city. Stolen artifacts, cryptic logs, and unanswered interrogations. Piece together the daily relics before the trail goes cold.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#props" class="btn-detective">
+            Inspect Evidence Board &rarr;
+          </a>
+          <span class="stamp-badge">CONFIDENTIAL</span>
+        </div>
+      </div>
+
+      <!-- Right 40%: Mystery Collage (Matches Reference Image Layout) -->
+      <div class="hero-collage-wrap">
+        <div class="collage-board">
+
+          <!-- Tape 1 (holding newspaper) -->
+          <div class="tape pos-tape-3"></div>
+
+          <!-- 1. Newspaper clipping -->
+          <div class="newspaper-clip pos-newspaper" title="Evidence #03: Newspaper Clipping">
+            <div class="news-header-banner"></div>
+            <div class="news-columns">
+              <div class="news-text-lines">
+                <div class="news-line w100"></div>
+                <div class="news-line w85"></div>
+                <div class="news-line w100"></div>
+                <div class="news-line w70"></div>
+                <div class="news-line w100"></div>
+                <div class="news-line w85"></div>
+                <div class="news-line w100"></div>
+                <div class="news-line w70"></div>
+              </div>
+              <div class="news-text-lines">
+                <div class="news-line w100"></div>
+                <div class="news-line w70"></div>
+                <div class="news-line w100"></div>
+                <div class="news-line w85"></div>
+                <div class="news-line w100"></div>
+                <div class="news-line w70"></div>
+                <div class="news-line w85"></div>
+              </div>
+              <!-- Red circled clue on newspaper -->
+              <div class="red-marker-circle" style="width: 78px; height: 38px; bottom: 8px; right: -6px;"></div>
+            </div>
+          </div>
+
+          <!-- Tape 2 (holding map) -->
+          <div class="tape pos-tape-4"></div>
+
+          <!-- 2. Map Card (Kraft paper with streets, river and red circles) -->
+          <div class="map-card pos-map" title="Evidence #01: City Sector Map">
+            <div class="map-graphics">
+              <svg viewBox="0 0 320 200" width="100%" height="100%" preserveAspectRatio="none">
+                <!-- Map background blocks -->
+                <rect x="0" y="0" width="320" height="200" fill="#E8D9C8" />
+
+                <!-- City blocks in darker kraft tones -->
+                <rect x="15" y="15" width="45" height="40" fill="#BAA692" rx="2" />
+                <rect x="70" y="15" width="70" height="35" fill="#BAA692" rx="2" />
+                <rect x="150" y="10" width="80" height="45" fill="#8E7E70" rx="2" />
+                <rect x="240" y="15" width="65" height="55" fill="#BAA692" rx="2" />
+
+                <rect x="180" y="65" width="50" height="40" fill="#6A5C52" rx="2" />
+                <rect x="240" y="80" width="65" height="45" fill="#BAA692" rx="2" />
+
+                <rect x="16" y="110" width="55" height="70" fill="#BAA692" rx="2" />
+                <rect x="190" y="140" width="55" height="45" fill="#6A5C52" rx="2" />
+                <rect x="255" y="135" width="50" height="50" fill="#BAA692" rx="2" />
+
+                <!-- Winding White River / Main Boulevard -->
+                <path d="M 120 0 C 130 50, 80 80, 95 120 C 105 145, 150 170, 190 200 L 155 200 C 120 175, 75 145, 65 110 C 50 70, 100 45, 95 0 Z" fill="#FDF8F2" opacity="0.95" />
+
+                <!-- Connecting white streets -->
+                <line x1="0" y1="70" x2="120" y2="70" stroke="#FFFDF8" stroke-width="7" stroke-linecap="round" />
+                <line x1="90" y1="130" x2="320" y2="125" stroke="#FFFDF8" stroke-width="7" stroke-linecap="round" />
+                <line x1="235" y1="0" x2="235" y2="200" stroke="#FFFDF8" stroke-width="6" stroke-linecap="round" />
+                <line x1="175" y1="65" x2="175" y2="200" stroke="#FFFDF8" stroke-width="5" stroke-linecap="round" />
+
+                <!-- Red Marker Circles & Marks -->
+                <!-- Red Circle 1 (riverbank) -->
+                <ellipse cx="65" cy="145" rx="16" ry="14" fill="none" stroke="#B8252A" stroke-width="3.5" transform="rotate(-10 65 145)" />
+                <!-- Red Circle 2 (crossroads) -->
+                <ellipse cx="160" cy="115" rx="13" ry="12" fill="none" stroke="#B8252A" stroke-width="3" transform="rotate(15 160 115)" />
+                <!-- Red Circle with X mark (crime scene) -->
+                <ellipse cx="218" cy="110" rx="15" ry="13" fill="none" stroke="#B8252A" stroke-width="3.5" />
+                <line x1="210" y1="102" x2="226" y2="118" stroke="#B8252A" stroke-width="3.5" stroke-linecap="round" />
+                <line x1="226" y1="102" x2="210" y2="118" stroke="#B8252A" stroke-width="3.5" stroke-linecap="round" />
+                <!-- Red question mark -->
+                <text x="238" y="165" font-family="'Permanent Marker', cursive" font-size="22" fill="#B8252A" font-weight="bold">?</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Tape 3 (holding notebook) -->
+          <div class="tape pos-tape-1"></div>
+
+          <!-- 3. Top Polaroid Card (Suspect: Man with mustache) -->
+          <div class="polaroid-card pos-polaroid-man" title="Suspect Photo #1: John Doe">
+            <div class="polaroid-photo">
+              <!-- SVG Man with mustache illustration matching user image -->
+              <svg viewBox="0 0 100 120" width="100%" height="100%">
+                <rect width="100" height="120" fill="#B8252A" />
+                <!-- Shoulders/chest -->
+                <path d="M 15 120 C 15 95, 85 95, 85 120 Z" fill="#D39F7F" />
+                <!-- Neck -->
+                <rect x="42" y="80" width="16" height="20" fill="#C58E6F" />
+                <!-- Head -->
+                <ellipse cx="50" cy="62" rx="20" ry="24" fill="#E2AC8D" />
+                <!-- Hair -->
+                <path d="M 28 55 C 24 35, 45 25, 60 25 C 75 25, 78 40, 74 60 C 70 42, 60 38, 50 38 C 40 38, 30 45, 28 55 Z" fill="#2C2825" />
+                <path d="M 28 42 C 22 40, 18 48, 22 58 C 26 50, 30 45, 28 42 Z" fill="#2C2825" />
+                <!-- Characteristic Mustache -->
+                <path d="M 50 72 C 45 68, 36 68, 34 74 C 40 76, 47 75, 50 74 C 53 75, 60 76, 66 74 C 64 68, 55 68, 50 72 Z" fill="#2C2825" />
+              </svg>
+            </div>
+            <div class="polaroid-caption">Suspect "M"</div>
+          </div>
+
+          <!-- 4. Spiral Notebook Card (Notes with red crossed lines) -->
+          <div class="note-card pos-notebook" title="Evidence #02: Field Notebook">
+            <div class="note-spirals">
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+            </div>
+            <div class="note-content">
+              <div class="note-line full"></div>
+              <div class="note-line full crossed"></div>
+              <div class="note-line med"></div>
+              <div class="note-line full"></div>
+              <div class="note-line full crossed"></div>
+              <div class="note-line short"></div>
+              <div class="note-line full"></div>
+              <div class="note-line full crossed"></div>
+              <div class="note-line med"></div>
+              <div class="note-line full crossed"></div>
+            </div>
+          </div>
+
+          <!-- 5. Detective Pen resting on notebook -->
+          <div class="detective-pen pos-pen">
+            <div class="pen-clip"></div>
+            <div class="pen-tip"></div>
+          </div>
+
+          <!-- Tape 4 (holding woman polaroid) -->
+          <div class="tape pos-tape-2"></div>
+
+          <!-- 6. Bottom Right Polaroid Card (Suspect: Woman) -->
+          <div class="polaroid-card pos-polaroid-woman" title="Suspect Photo #2: Witness B">
+            <div class="polaroid-photo">
+              <!-- SVG Woman illustration matching reference -->
+              <svg viewBox="0 0 100 120" width="100%" height="100%">
+                <rect width="100" height="120" fill="#B8252A" />
+                <!-- Shoulders -->
+                <path d="M 18 120 C 18 96, 82 96, 82 120 Z" fill="#D39F7F" />
+                <!-- Neck -->
+                <rect x="44" y="82" width="12" height="18" fill="#C58E6F" />
+                <!-- Head -->
+                <ellipse cx="50" cy="62" rx="18" ry="22" fill="#E2AC8D" />
+                <!-- Dark Bob Hair -->
+                <path d="M 28 65 C 26 40, 40 28, 50 28 C 60 28, 74 40, 72 65 C 76 75, 78 86, 72 90 C 68 85, 68 70, 68 62 C 60 48, 40 48, 32 62 C 32 70, 32 85, 28 90 C 22 86, 24 75, 28 65 Z" fill="#2C2825" />
+              </svg>
+            </div>
+            <div class="polaroid-caption">Witness "K"</div>
+          </div>
+
+          <!-- 7. Handwritten Marker Cutout ("HOW?!") -->
+          <div class="marker-note pos-how-note" title="Question Clue">
+            <div class="marker-text">HOW?!</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         UI KIT & PROPS COMPONENT SHOWCASE
+         ========================================================================== -->
+    <section class="showcase-section" id="props">
+      <div class="section-divider">
+        <h2 class="section-title">Evidence Props & UI Components</h2>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <div class="props-grid">
+        <!-- 1. Polaroid Props -->
+        <div class="prop-demo-card">
+          <div class="polaroid-card" style="width: 155px; transform: rotate(-3deg);">
+            <div class="polaroid-photo">
+              <svg viewBox="0 0 100 120" width="100%" height="100%">
+                <rect width="100" height="120" fill="#B8252A" />
+                <path d="M 15 120 C 15 95, 85 95, 85 120 Z" fill="#D39F7F" />
+                <rect x="42" y="80" width="16" height="20" fill="#C58E6F" />
+                <ellipse cx="50" cy="62" rx="20" ry="24" fill="#E2AC8D" />
+                <path d="M 28 55 C 24 35, 45 25, 60 25 C 75 25, 78 40, 74 60 C 70 42, 60 38, 50 38 C 40 38, 30 45, 28 55 Z" fill="#2C2825" />
+                <path d="M 50 72 C 45 68, 36 68, 34 74 C 40 76, 47 75, 50 74 C 53 75, 60 76, 66 74 C 64 68, 55 68, 50 72 Z" fill="#2C2825" />
+              </svg>
+            </div>
+            <div class="polaroid-caption">.polaroid-card</div>
+          </div>
+          <span class="prop-label">Polaroid Photo Card</span>
+        </div>
+
+        <!-- 2. Spiral Note Card -->
+        <div class="prop-demo-card">
+          <div class="note-card" style="width: 180px; transform: rotate(2deg);">
+            <div class="note-spirals">
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+              <span class="spiral-ring"></span>
+            </div>
+            <div class="note-content">
+              <div class="note-line full"></div>
+              <div class="note-line full crossed"></div>
+              <div class="note-line med"></div>
+              <div class="note-line full crossed"></div>
+              <div class="note-line short"></div>
+            </div>
+          </div>
+          <span class="prop-label">.note-card (Torn Notebook)</span>
+        </div>
+
+        <!-- 3. Newspaper Clip -->
+        <div class="prop-demo-card">
+          <div class="newspaper-clip" style="width: 200px; transform: rotate(-2deg);">
+            <div class="news-header-banner"></div>
+            <div class="news-columns">
+              <div class="news-text-lines">
+                <div class="news-line w100"></div>
+                <div class="news-line w85"></div>
+                <div class="news-line w70"></div>
+                <div class="news-line w100"></div>
+              </div>
+              <div class="news-text-lines">
+                <div class="news-line w100"></div>
+                <div class="news-line w70"></div>
+                <div class="news-line w85"></div>
+              </div>
+              <div class="red-marker-circle" style="width: 65px; height: 30px; bottom: 4px; right: -2px;"></div>
+            </div>
+          </div>
+          <span class="prop-label">.newspaper-clip (Torn News)</span>
+        </div>
+
+        <!-- 4. Buttons and Marker Notes -->
+        <div class="prop-demo-card" style="gap: 20px;">
+          <div class="marker-note" style="transform: rotate(4deg);">
+            <div class="marker-text">HOW?!</div>
+          </div>
+          <button class="btn-detective">.btn-detective</button>
+          <button class="btn-detective btn-outline">Outline CTA</button>
+          <span class="prop-label">CTA Buttons & Marker Notes</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="dossier-footer">
+    <div>&copy; 1926–2026 Solomon's Archive &bull; Detective Dossier Design System</div>
+    <div>Theme: Vintage Paper / Crimson Mystery</div>
+  </footer>
+
+</body>
+</html>
