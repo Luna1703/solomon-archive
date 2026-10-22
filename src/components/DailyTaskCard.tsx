@@ -24,20 +24,20 @@ interface DailyTaskCardProps {
 }
 
 const CATEGORY_COLORS: Record<TaskCategory, { bg: string; text: string; border: string }> = {
-  artefact: { bg: 'bg-[rgba(224,36,91,0.12)]', text: 'text-[#e0245b]', border: 'border-[rgba(224,36,91,0.3)]' },
-  nature: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/30' },
-  time: { bg: 'bg-sky-500/10', text: 'text-sky-400', border: 'border-sky-500/30' },
-  light: { bg: 'bg-[rgba(224,36,91,0.12)]', text: 'text-[#e0245b]', border: 'border-[rgba(224,36,91,0.3)]' },
-  knowledge: { bg: 'bg-indigo-500/10', text: 'text-indigo-400', border: 'border-indigo-500/30' },
-  everyday: { bg: 'bg-rose-500/10', text: 'text-rose-400', border: 'border-rose-500/30' },
-  food: { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/30' },
-  architecture: { bg: 'bg-stone-500/10', text: 'text-stone-300', border: 'border-stone-500/30' },
-  transport: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/30' },
-  texture: { bg: 'bg-lime-500/10', text: 'text-lime-400', border: 'border-lime-500/30' },
-  color: { bg: 'bg-fuchsia-500/10', text: 'text-fuchsia-400', border: 'border-fuchsia-500/30' },
-  animals: { bg: 'bg-teal-500/10', text: 'text-teal-400', border: 'border-teal-500/30' },
-  street: { bg: 'bg-violet-500/10', text: 'text-violet-400', border: 'border-violet-500/30' },
-  geometry: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/30' },
+  artefact: { bg: 'bg-[#be2c51]/15', text: 'text-[#e04f75]', border: 'border-[#be2c51]/40' },
+  nature: { bg: 'bg-[#505f5a]/30', text: 'text-[#85a89c]', border: 'border-[#505f5a]/50' },
+  time: { bg: 'bg-[#8e7f18]/20', text: 'text-[#c0a53c]', border: 'border-[#8e7f18]/40' },
+  light: { bg: 'bg-[#c0a53c]/20', text: 'text-[#d6bc50]', border: 'border-[#c0a53c]/40' },
+  knowledge: { bg: 'bg-[#9d8070]/25', text: 'text-[#c8aba0]', border: 'border-[#9d8070]/40' },
+  everyday: { bg: 'bg-[#be2c51]/15', text: 'text-[#e04f75]', border: 'border-[#be2c51]/40' },
+  food: { bg: 'bg-[#c0a53c]/20', text: 'text-[#c0a53c]', border: 'border-[#c0a53c]/40' },
+  architecture: { bg: 'bg-[#505f5a]/30', text: 'text-[#b0c0bc]', border: 'border-[#505f5a]/50' },
+  transport: { bg: 'bg-[#505f5a]/25', text: 'text-[#90a8a0]', border: 'border-[#505f5a]/40' },
+  texture: { bg: 'bg-[#8e7f18]/20', text: 'text-[#c0a53c]', border: 'border-[#8e7f18]/40' },
+  color: { bg: 'bg-[#be2c51]/15', text: 'text-[#e04f75]', border: 'border-[#be2c51]/40' },
+  animals: { bg: 'bg-[#505f5a]/30', text: 'text-[#85a89c]', border: 'border-[#505f5a]/50' },
+  street: { bg: 'bg-[#9d8070]/25', text: 'text-[#c8aba0]', border: 'border-[#9d8070]/40' },
+  geometry: { bg: 'bg-[#8e7f18]/20', text: 'text-[#c0a53c]', border: 'border-[#8e7f18]/40' },
 };
 
 export const DailyTaskCard: React.FC<DailyTaskCardProps> = ({

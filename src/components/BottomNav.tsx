@@ -46,7 +46,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
     <nav
       className="fixed bottom-0 left-0 right-0 z-20 backdrop-blur-lg border-t px-2 py-1.5 sm:py-2"
       style={{
-        backgroundColor: 'rgba(15, 13, 14, 0.92)',
+        backgroundColor: 'rgba(21, 24, 23, 0.94)',
         borderColor: 'var(--border)',
       }}
     >

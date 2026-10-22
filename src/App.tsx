@@ -10,6 +10,7 @@ import { ArtifactModal } from './components/ArtifactModal';
 import { AchievementsView } from './components/AchievementsView';
 import { SettingsModal } from './components/SettingsModal';
 import { UnlockedAchievementToast } from './components/UnlockedAchievementToast';
+import { TapeBands } from './components/TapeBands';
 
 import type { Achievement, ArtifactItem, Language, StreakState, TaskDefinition } from './types';
 import { StorageService } from './services/storage';
@@ -212,6 +213,9 @@ export function App() {
         isTodayCompleted={isTodayCompleted}
         onOpenSettings={() => setIsSettingsOpen(true)}
       />
+
+      {/* Ticker / Running Tape Bands (from design preview) */}
+      <TapeBands lang={lang} />
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-5 sm:py-7 pb-24 space-y-6">

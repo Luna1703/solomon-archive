@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Settings, Sparkles, Globe } from 'lucide-react';
+import { Flame, Settings, Globe } from 'lucide-react';
 import type { Language, StreakState } from '../types';
 import { translations } from '../i18n/translations';
 
@@ -24,31 +24,42 @@ export const Header: React.FC<HeaderProps> = ({
     <header
       className="sticky top-0 z-30 backdrop-blur-md px-4 py-3 border-b"
       style={{
-        backgroundColor: 'rgba(15, 13, 14, 0.88)',
+        backgroundColor: 'rgba(21, 24, 23, 0.92)',
         borderColor: 'var(--border)',
       }}
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
-        {/* Brand / Logo */}
+        {/* Brand / Logo with user's sticker */}
         <div className="flex items-center gap-2.5">
           <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center border shadow-lg"
+            className="w-10 h-10 rounded-xl overflow-hidden border shadow-lg flex items-center justify-center p-0.5"
             style={{
-              background: 'var(--accent)',
-              borderColor: 'var(--border-accent)',
-              boxShadow: '0 4px 14px var(--accent-glow)',
+              background: 'linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%)',
+              borderColor: 'var(--border-gold)',
+              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.4), 0 0 10px var(--accent-gold-glow)',
             }}
           >
-            <Sparkles className="w-5 h-5 text-white" />
+            <img
+              src="logo-sticker.png"
+              alt="Logo Sticker"
+              className="w-full h-full object-contain filter drop-shadow hover:scale-105 transition-transform"
+              onError={(e) => {
+                // Fallback if needed
+                (e.currentTarget as HTMLImageElement).src = '/logo-sticker.png';
+              }}
+            />
           </div>
           <div>
             <h1
-              className="text-base sm:text-lg font-extrabold tracking-tight text-white"
+              className="text-base sm:text-lg font-extrabold tracking-tight text-white flex items-center gap-1.5"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              {t.appTitle}
+              <span>{t.appTitle}</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider" style={{ background: 'var(--accent-gold-subtle)', color: 'var(--accent-gold)', border: '1px solid var(--border-gold)' }}>
+                Archive
+              </span>
             </h1>
-            <p className="hidden sm:block text-xs text-white/50">
+            <p className="hidden sm:block text-xs" style={{ color: 'var(--text-secondary)' }}>
               {t.appSubtitle}
             </p>
           </div>
