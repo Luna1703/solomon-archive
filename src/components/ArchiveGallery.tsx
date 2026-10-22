@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Sparkles, SlidersHorizontal, Calendar, Compass } from 'lucide-react';
+import { Search, Sparkles, SlidersHorizontal, Calendar, Compass, Download } from 'lucide-react';
 import type { ArtifactItem, Language, TaskCategory } from '../types';
 import { translations } from '../i18n/translations';
 
@@ -217,13 +217,37 @@ export const ArchiveGallery: React.FC<ArchiveGalleryProps> = ({
                   <div
                     className="absolute top-2 left-2 px-2 py-0.5 rounded-md backdrop-blur-sm border text-[10px] font-mono font-bold"
                     style={{
-                      background: 'rgba(15, 13, 14, 0.85)',
+                      background: 'rgba(21, 24, 23, 0.88)',
                       borderColor: 'var(--border)',
-                      color: 'var(--accent)',
+                      color: 'var(--accent-gold)',
                     }}
                   >
                     #{relicNumStr}
                   </div>
+
+                  {/* Quick download button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const link = document.createElement('a');
+                      link.href = art.imageUrl;
+                      const cleanTitle = (art.taskTitle.en || 'photo').toLowerCase().replace(/[^a-z0-9]/g, '-');
+                      link.download = `solomon-archive-${relicNumStr}-${cleanTitle}.jpg`;
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                    className="absolute top-2 right-2 p-1.5 rounded-lg border backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:scale-105"
+                    style={{
+                      background: 'rgba(21, 24, 23, 0.88)',
+                      borderColor: 'var(--border-gold)',
+                      color: 'var(--accent-gold)',
+                    }}
+                    title={t.downloadPhoto}
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                  </button>
                 </div>
 
                 {/* Card footer details */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Calendar, Tag, Trash2, Quote, Sparkles } from 'lucide-react';
+import { X, Calendar, Tag, Trash2, Quote, Sparkles, Download } from 'lucide-react';
 import type { ArtifactItem, Language } from '../types';
 import { translations } from '../i18n/translations';
 
@@ -41,6 +41,24 @@ export const ArtifactModal: React.FC<ArtifactModalProps> = ({
   };
 
   const relicNumStr = String(indexNumber).padStart(3, '0');
+
+  const handleDownload = () => {
+    try {
+      const link = document.createElement('a');
+      link.href = artifact.imageUrl;
+      // Friendly filename
+      const cleanTitle = (artifact.taskTitle.en || 'photo')
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '-');
+      link.download = `solomon-archive-${relicNumStr}-${cleanTitle}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (e) {
+      console.error('Download failed', e);
+      window.open(artifact.imageUrl, '_blank');
+    }
+  };
 
   return (
     <div
@@ -148,20 +166,39 @@ export const ArtifactModal: React.FC<ArtifactModalProps> = ({
 
         {/* Footer actions */}
         <div
-          className="px-5 py-3 border-t flex items-center justify-between"
+          className="px-5 py-3 border-t flex flex-wrap items-center justify-between gap-2"
           style={{
             background: 'var(--bg-primary)',
             borderColor: 'var(--border)',
           }}
         >
-          <button
-            type="button"
-            onClick={handleDelete}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 text-xs font-semibold transition-colors"
-          >
-            <Trash2 className="w-3.5 h-3.5" />
-            <span>{t.deleteButton}</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleDownload}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all border"
+              style={{
+                background: 'var(--accent-gold-subtle)',
+                borderColor: 'var(--border-gold)',
+                color: 'var(--accent-gold)',
+                boxShadow: '0 2px 8px var(--accent-gold-glow)',
+              }}
+              title={t.downloadPhoto}
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>{t.downloadPhoto}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleDelete}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 text-xs font-semibold transition-colors"
+              title={t.deleteButton}
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">{t.deleteButton}</span>
+            </button>
+          </div>
 
           <button
             type="button"

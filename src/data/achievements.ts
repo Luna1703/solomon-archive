@@ -5,14 +5,14 @@ export const ACHIEVEMENTS_LIST: Achievement[] = [
     id: 'first_relic',
     icon: 'Sparkles',
     title: {
-      en: 'First Relic',
-      hy: 'Առաջին Մասունք',
-      ru: 'Первая Реликвия'
+      en: 'First Shot',
+      hy: 'Առաջին Կադր',
+      ru: 'Первый кадр'
     },
     description: {
-      en: 'Seal your very first photograph into Solomon\'s Archive.',
-      hy: 'Կնքեք ձեր առաջին լուսանկարը Սողոմոնի Արխիվում:',
-      ru: 'Запечатайте свою первую фотографию в Архив Соломона.'
+      en: 'Save your very first photograph into Solomon\'s Archive.',
+      hy: 'Պահպանեք ձեր առաջին լուսանկարը Սողոմոնի Արխիվում:',
+      ru: 'Сохраните свою первую фотографию в Архив Соломона.'
     },
     condition: {
       type: 'artifact_count',
